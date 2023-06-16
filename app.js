@@ -22,22 +22,22 @@ app.post("/rotary",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response)
    }
-   else if (/^[A-Za-z\s]+$/.test(text)) {
-    response = `CON Select Club Name
-        1. A-D
-        2. E-H
-        3. I-K
-        4. L
-        5. M
-        6. N
-        7. O-S
-        8. T-Z
+//    else if (/^[A-Za-z\s]+$/.test(text)) {
+//     response = `CON Select Club Name
+//         1. A-D
+//         2. E-H
+//         3. I-K
+//         4. L
+//         5. M
+//         6. N
+//         7. O-S
+//         8. T-Z
         
-   `;
+//    `;
 
-    res.set('Content-Type: text/plain');
-    res.send(response);
-  } 
+//     res.set('Content-Type: text/plain');
+//     res.send(response);
+//   } 
 //   if (text === "1") {
 //     response = `CON select Club Name
 //         1. Athi River
@@ -269,13 +269,13 @@ app.post("/rotary",(req,res)=>{
 //         res.set('Content-Type: text/plain');
 //         res.send(response);
 //     }
-   else {
-    // Handle invalid input or perform additional logic if needed
-    response = `END Invalid input. Please try again.`;
+//    else {
+//     // Handle invalid input or perform additional logic if needed
+//     response = `END Invalid input. Please try again.`;
 
-    res.set('Content-Type: text/plain');
-    res.send(response);
-    }
+//     res.set('Content-Type: text/plain');
+//     res.send(response);
+//     }
 })
 
 app.listen(port,()=>{
