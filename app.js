@@ -22,7 +22,7 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response)
    }
-   else if (/^[A-Za-z\s]+$/.test(text)) {
+   if (/^[A-Za-z\s]+$/.test(text)) {
     response = `CON Select Club Name
         1. A-D
         2. E-H
@@ -37,9 +37,10 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response);
   }
-  else if (text) {
-    if(text.split("*").length === 2){
+  if(text.split("*").length === 2){
+    
         const splitText = text.split("*")[1];
+        
     if (splitText === "1") {
     response = `CON select Club Name
         1. Athi River
@@ -55,7 +56,7 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response);
   } 
-  else if (splitText === "2") {
+  if (splitText === "2") {
     response = `CON select Club Name
         1. E-Club of 9212, Safari
         2. E-Club of Rift Valley
@@ -72,7 +73,7 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response);
   } 
-  else if (splitText === "3") {
+  if (splitText === "3") {
     response = `CON select Club Name
         1. Isiolo
         2. Jabali
@@ -101,7 +102,7 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response);
   }
-  else if (splitText === "4"){
+  if (splitText === "4"){
     response= `CON select Club Name
         1. Laikipia Highlanders
         2. Lalibela
@@ -114,7 +115,7 @@ app.post("/ussd",(req,res)=>{
         res.set('Content-Type: text/plain');
         res.send(response);
   }
-  else if (splitText === "5"){
+  if (splitText === "5"){
     response= `CON select Club Name
         1. Maasai Mara-Narok
         2. Machakos
@@ -140,7 +141,7 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response);
   }
-  else if (splitText === "6"){
+  if (splitText === "6"){
     response= `CON select Club Name
         1. Nairobi
         2. Nairobi Celebrate
@@ -178,7 +179,7 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response);
     }
-    else if (splitText === "7"){
+    if (splitText === "7"){
         response= `CON select Club Name
             1. Ongata Rongai
             2. Ongata Rongai East
@@ -193,7 +194,7 @@ app.post("/ussd",(req,res)=>{
             res.set('Content-Type: text/plain');
             res.send(response);
         }
-    else if (splitText === "8"){
+    if (splitText === "8"){
         response= `CON select Club Name
             1. Taveta
             2. Thika
@@ -205,92 +206,75 @@ app.post("/ussd",(req,res)=>{
         res.set('Content-Type: text/plain');
         res.send(response);
     }
-    // if (
-    // text.startsWith("1*") || 
-    // text.startsWith("2*") || 
-    // text.startsWith("3*") || 
-    // text.startsWith("4*") || 
-    // text.startsWith("5*") || 
-    // text.startsWith("6*") || 
-    // text.startsWith("7*") || 
-    // text.startsWith("8*")) {
-    //     let maxOption;
-    //     const subMenuOption = parseInt(text.split('*')[1]);
+   }
+   if(text.split("*").length === 3){
+    const parts = text.split("*");
+    const splitText2 = parts.slice(1).join("*");
+        if(
+        splitText2.startsWith("1*") || 
+        splitText2.startsWith("2*") || 
+        splitText2.startsWith("3*") || 
+        splitText2.startsWith("4*") || 
+        splitText2.startsWith("5*") || 
+        splitText2.startsWith("6*") || 
+        splitText2.startsWith("7*") || 
+        splitText2.startsWith("8*")) {
+            let maxOption;
+            const subMenuOption = parseInt(splitText2.split('*')[1]);
 
-    //     if(text.startsWith("1*")){
-    //         maxOption=8;
-    //     }
-    //     if(text.startsWith("2*")){
-    //         maxOption=11;
-    //     }
-    //     if(text.startsWith("3*")){
-    //         maxOption=23;
-    //     }
-    //     if(text.startsWith("4*")){
-    //         maxOption=7;
-    //     }
-    //     if(text.startsWith("5*")){
-    //         maxOption=20;
-    //     }
-    //     if(text.startsWith("6*")){
-    //         maxOption=22;
-    //     }
-    //     if(text.startsWith("7*")){
-    //         maxOption=9;
-    //     }
-    //     if(text.startsWith("8*")){
-    //         maxOption=6;
-    //     }
-
-    //     if(!isNaN(subMenuOption) && subMenuOption >= 1 && subMenuOption <= maxOption){
-    //         response = `CON Enter Membership ID`
-    //         if (text.split('*').length === 3) { 
-    //             response = `CON Select Fund
-    //             1. Annual Fund
-    //             2. End Polio Fund
-    //             3. Endowment Fund`;
-    //             res.set('Content-Type: text/plain');
-    //             res.send(response);
-    //         }
-    //         if(text.split("*").length === 4){
-    //             const lastDigit = parseInt(text.split('*').pop())
-    //             if (lastDigit === 1 || lastDigit === 2 || lastDigit === 3){
-    //                 response = `CON Select Amount
-    //                 1. 400
-    //                 2. 1000
-    //                 3. 5000
-    //                 4. 10,000
-    //                 5. 100,000
-    //                 6. 150,000`;
-    //                 res.set('Content-Type: text/plain');
-    //                 res.send(response);
-    //             }
-    //             else{
-    //                 response = `END Invalid input. Please try again.`;
-    //                 res.set('Content-Type: text/plain');
-    //                 res.send(response);
-    //             }
-                
-    //         }
-    //     }
-    //     else{
-    //         response = `END Invalid input. Please try again.`;
-    //         res.set('Content-Type: text/plain');
-    //         res.send(response);
-    //     }
-    // }
-    else{
-        response = `END Invalid input. Please try again.`;
-        res.set('Content-Type: text/plain');
-        res.send(response);
+            if(splitText2.startsWith("1*")){
+                maxOption=8;
+            }
+            if(splitText2.startsWith("2*")){
+                maxOption=11;
+            }
+            if(splitText2.startsWith("3*")){
+                maxOption=23;
+            }
+            if(splitText2.startsWith("4*")){
+                maxOption=7;
+            }
+            if(splitText2.startsWith("5*")){
+                maxOption=20;
+            }
+            if(splitText2.startsWith("6*")){
+                maxOption=22;
+            }
+            if(splitText2.startsWith("7*")){
+                maxOption=9;
+            }
+            if(splitText2.startsWith("8*")){
+                maxOption=6;
+            }
+            if(subMenuOption >= 1 && subMenuOption <= maxOption){
+                response = `CON Enter Membership ID`
+                res.set('Content-Type: text/plain');
+                res.send(response);
+            }
+        }   
+    }
+    if (text.split('*').length === 4) { 
+            response = `CON Select Fund
+            1. Annual Fund
+            2. End Polio Fund
+            3. Endowment Fund`;
+            res.set('Content-Type: text/plain');
+            res.send(response);
+     }
+    if(text.split("*").length === 5){
+        const lastDigit = parseInt(text.split('*').pop())
+        if (lastDigit === 1 || lastDigit === 2 || lastDigit === 3){
+            response = `CON Select Amount
+            1. 400
+            2. 1000
+            3. 5000
+            4. 10,000
+            5. 100,000
+            6. 150,000`;
+            res.set('Content-Type: text/plain');
+            res.send(response);
     }
 }
-  }
-   else {
-    response = `END Invalid input. Please try again.`;
-    res.set('Content-Type: text/plain');
-    res.send(response);
-    }
 })
 
 app.listen(port,()=>{
