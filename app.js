@@ -3,20 +3,21 @@ const app=express();
 const port = 3000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 
 app.post("/ussd",(req,res)=>{
     const {
-    sessionId,
-    serviceCode,
-    phoneNumber,
-    text
-    }=req.body;
+        sessionId,
+        serviceCode,
+        phoneNumber,
+        text,
+    } = req.body;
+
     console.log(req.body);
-   let response = "";
+   let response = '';
 
-   if(text === ""){ 
+   if(text == ''){ 
     response = `CON Welcome to Rotary district 9212
-
     To register enter your Full Name`;  
 
     res.set('Content-Type: text/plain');
