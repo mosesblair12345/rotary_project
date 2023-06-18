@@ -11,7 +11,6 @@ app.post("/ussd",(req,res)=>{
     phoneNumber = req.body.DEST || req.body.MSISDN || req.body.msisdn || req.body.phoneNumber,
     text = req.body.USSD_PARAMS || req.body.USSD_STRING || req.body['ussd-string'] || req.body.ussd_string || req.body.text
     }=req.body;
-    console.log(req.body);
 
    let response = "";
 
@@ -23,7 +22,7 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response)
    }
-   else if (/^[A-Za-z\s]+\*$/.test(text)) {
+   else if (/^[A-Za-z\s]+$/.test(text)) {
     response = `CON Select Club Name
         1. A-D
         2. E-H
@@ -283,13 +282,12 @@ app.post("/ussd",(req,res)=>{
     else{
         response = `END Invalid input. Please try again.`;
         res.set('Content-Type: text/plain');
-       res.send(response);
+        res.send(response);
     }
 }
   }
    else {
     response = `END Invalid input. Please try again.`;
-
     res.set('Content-Type: text/plain');
     res.send(response);
     }
