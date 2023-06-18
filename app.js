@@ -6,10 +6,10 @@ app.use(express.json());
 
 app.post("/ussd",(req,res)=>{
     const {
-    sessionId = req.body.SESSION_ID || req.body['session-id'] || req.body.session_id || req.body.session || req.body.sessionId,
-    serviceCode = req.body.SERVICE_CODE || req.body.ORIG || req.body['service-code'] || req.body.service_code || req.body.serviceCode,
-    phoneNumber = req.body.DEST || req.body.MSISDN || req.body.msisdn || req.body.phoneNumber,
-    text = req.body.USSD_PARAMS || req.body.USSD_STRING || req.body['ussd-string'] || req.body.ussd_string || req.body.text
+    sessionId,
+    serviceCode,
+    phoneNumber,
+    text
     }=req.body;
     console.log(req.body);
    let response = "";
