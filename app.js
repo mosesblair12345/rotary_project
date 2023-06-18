@@ -23,21 +23,21 @@ app.post("/ussd",(req,res)=>{
     res.set('Content-Type: text/plain');
     res.send(response)
    }
-//    if (/^[A-Za-z\s]+$/.test(text)) {
-//     response = `CON Select Club Name
-//         1. A-D
-//         2. E-H
-//         3. I-K
-//         4. L
-//         5. M
-//         6. N
-//         7. O-S
-//         8. T-Z
+   if (/^[A-Za-z\s]+$/.test(text)) {
+    response = `CON Select Club Name
+        1. A-D
+        2. E-H
+        3. I-K
+        4. L
+        5. M
+        6. N
+        7. O-S
+        8. T-Z
         
-//    `;
-//     res.set('Content-Type: text/plain');
-//     res.send(response);
-//   }
+   `;
+    res.set('Content-Type: text/plain');
+    res.send(response);
+  }
 //   if(text.split("*").length === 2){
     
 //         const splitText = text.split("*")[1];
