@@ -12,11 +12,12 @@ app.post("/ussd",(req,res)=>{
         phoneNumber = req.body.DEST || req.body.MSISDN || req.body.msisdn || req.body.phoneNumber,
         text = req.body.USSD_PARAMS || req.body.USSD_STRING || req.body['ussd-string'] || req.body.ussd_string || req.body.text
     }=req.body
-    console.log(req.body);
+
    let response = "";
 
    if(text == ''){ 
-    response = `CON Welcome to Rotary district 9212
+    // Welcome console
+    response = `CON Welcome to Rotary District 9212
 
     To register enter your Full Name`;  
 
@@ -24,6 +25,7 @@ app.post("/ussd",(req,res)=>{
     res.send(response)
    }
    else if (/^[A-Za-z\s]+$/.test(text)) {
+    // Club letter selection console
     response = `CON Select Club Name
         1. A-D
         2. E-H
@@ -41,9 +43,9 @@ app.post("/ussd",(req,res)=>{
     else if(text.split("*").length === 2){
         
         const splitText = text.split("*")[1];
-        
+    // Club selection console
     if (splitText === "1") {
-    response = `CON select Club Name
+    response = `CON Select Club Name
         1. Athi River
         2. Bahari-Mombasa
         3. Bamburi-Mombasa
@@ -58,7 +60,7 @@ app.post("/ussd",(req,res)=>{
     res.send(response);
   } 
   else if (splitText === "2") {
-    response = `CON select Club Name
+    response = `CON Select Club Name
         1. E-Club of 9212, Safari
         2. E-Club of Rift Valley
         3. Eldama Ravine
@@ -75,7 +77,7 @@ app.post("/ussd",(req,res)=>{
     res.send(response);
   } 
   else if (splitText === "3") {
-    response = `CON select Club Name
+    response = `CON Select Club Name
         1. Isiolo
         2. Jabali
         3. Kaimosi
@@ -104,7 +106,7 @@ app.post("/ussd",(req,res)=>{
     res.send(response);
   }
   else if (splitText === "4"){
-    response= `CON select Club Name
+    response= `CON Select Club Name
         1. Laikipia Highlanders
         2. Lalibela
         3. Lamu
@@ -117,7 +119,7 @@ app.post("/ussd",(req,res)=>{
         res.send(response);
   }
   else if (splitText === "5"){
-    response= `CON select Club Name
+    response= `CON Select Club Name
         1. Maasai Mara-Narok
         2. Machakos
         3. Malindi
@@ -143,7 +145,7 @@ app.post("/ussd",(req,res)=>{
     res.send(response);
   }
   else if (splitText === "6"){
-    response= `CON select Club Name
+    response= `CON Select Club Name
         1. Nairobi
         2. Nairobi Celebrate
         3. Nairobi Gigiri
@@ -181,7 +183,7 @@ app.post("/ussd",(req,res)=>{
     res.send(response);
     }
     else if (splitText === "7"){
-        response= `CON select Club Name
+        response= `CON Select Club Name
             1. Ongata Rongai
             2. Ongata Rongai East
             3. Qarsa
@@ -196,7 +198,7 @@ app.post("/ussd",(req,res)=>{
             res.send(response);
         }
     else if (splitText === "8"){
-        response= `CON select Club Name
+        response= `CON Select Club Name
             1. Taveta
             2. Thika
             3. Thika West
@@ -263,6 +265,7 @@ app.post("/ussd",(req,res)=>{
             }
 
             if(subMenuOption >= 1 && subMenuOption <= maxOption){
+                // Member id console
                 response = `CON Enter Membership ID`
                 res.set('Content-Type: text/plain');
                 res.send(response);
@@ -275,6 +278,7 @@ app.post("/ussd",(req,res)=>{
         }   
     }
 else if (text.split('*').length === 4) { 
+            // Type of fund console
             response = `CON Select Fund
             1. Annual Fund
             2. End Polio Fund
@@ -285,6 +289,7 @@ else if (text.split('*').length === 4) {
 else if(text.split("*").length === 5){
         const lastDigit = parseInt(text.split('*').pop())
         if (lastDigit === 1 || lastDigit === 2 || lastDigit === 3){
+            // Ammount selection console
             response = `CON Select Amount
             1. 400
             2. 1000
@@ -300,13 +305,11 @@ else if(text.split("*").length === 5){
         res.send(response);
     }
 }
-
 else{
     response = `END Invalid input. Please enter a valid selection.`
     res.set('Content-Type: text/plain');
     res.send(response);
    }
-
 })
 
 app.listen(port,()=>{
