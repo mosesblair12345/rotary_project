@@ -308,7 +308,7 @@ else if(text.split("*").length === 5){
 }
 else if (text.split("*").length === 6){
     const lastDigit = parseInt(text.split('*').pop());
-    
+
     if(lastDigit === 1){
         response = `END Your selection was Ksh 400. Thank you.`
         res.set('Content-Type: text/plain');
@@ -321,6 +321,8 @@ else if (text.split("*").length === 6){
     }
     else if (lastDigit === 3){
         response = `END Your selection was Ksh 5000. Thank you.`
+        res.set('Content-Type: text/plain');
+        res.send(response);
     }
     else if (lastDigit === 4){
         response = `END Your selection was Ksh 10,000. Thank you.`
