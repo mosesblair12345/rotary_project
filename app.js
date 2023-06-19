@@ -304,6 +304,44 @@ else if(text.split("*").length === 5){
         res.set('Content-Type: text/plain');
         res.send(response);
     }
+
+}
+else if (text.split("*").length === 6){
+    const lastDigit = parseInt(text.split('*').pop());
+    
+    if(lastDigit === 1){
+        response = `END Your selection was Ksh 400. Thank you.`
+        res.set('Content-Type: text/plain');
+        res.send(response);
+    }
+    else if (lastDigit === 2){
+        response = `END Your selection was Ksh 1000. Thank you.`
+        res.set('Content-Type: text/plain');
+        res.send(response);
+    }
+    else if (lastDigit === 3){
+        response = `END Your selection was Ksh 5000. Thank you.`
+    }
+    else if (lastDigit === 4){
+        response = `END Your selection was Ksh 10,000. Thank you.`
+        res.set('Content-Type: text/plain');
+        res.send(response);
+    }
+    else if (lastDigit === 5){
+        response = `END Your selection was Ksh 100,000. Thank you.`
+        res.set('Content-Type: text/plain');
+        res.send(response);
+    }
+    else if (lastDigit === 6){
+        response = `END Your selectionwas Ksh 150,000. Thank you.`
+        res.set('Content-Type: text/plain');
+        res.send(response);
+    }
+    else{
+        response = `END Invalid input. Please enter a valid selection.`
+        res.set('Content-Type: text/plain');
+        res.send(response);
+    }
 }
 else{
     response = `END Invalid input. Please enter a valid selection.`
